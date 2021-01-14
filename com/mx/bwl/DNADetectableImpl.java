@@ -17,12 +17,14 @@ public class DNADetectableImpl implements DNADetectable {
 
 	}
 
+	@Override
 	public boolean hasMutation(final String patternDNA) {
 		final Pattern pattern = Pattern.compile(DNADetectable.MUTATION_PATTERN, Pattern.CASE_INSENSITIVE);
 		final Matcher matcher = pattern.matcher(patternDNA);
 		return matcher.find();
 	}
 
+	@Override
 	public List<String> extractVerticalPattern(final List<String> listDNA) {
 		String str = "";
 		List<String> listDNAVertical = Arrays.asList(new String[listDNA.size()]);
@@ -38,6 +40,7 @@ public class DNADetectableImpl implements DNADetectable {
 		return listDNAVertical;
 	}
 
+	@Override
 	public List<String> extracDiagonalPattternFromRigthToLeft(final String[][] matrixDNA) {
 		final int matrixDNALength = matrixDNA.length;
 		final int strDiagonalLimit = matrixDNALength - 4;
@@ -62,6 +65,7 @@ public class DNADetectableImpl implements DNADetectable {
 		return matrixDNADiagonal;
 	}
 
+	@Override
 	public List<String> extractDiagonalPatternFromLeftToRight(final String[][] matrixDNA) {
 		final int matrixDNALength = matrixDNA.length;
 		final int strDiagonalLimit = matrixDNALength - 4;
@@ -86,6 +90,7 @@ public class DNADetectableImpl implements DNADetectable {
 		return matrixDNADiagonal;
 	}
 
+	@Override
 	public boolean searchForMutation(final List<String> patternDNAList) {
 		return patternDNAList.stream().anyMatch(dnaPattern -> hasMutation(dnaPattern.replace(" ", "")));
 	}
